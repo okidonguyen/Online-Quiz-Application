@@ -1,0 +1,29 @@
+{
+  "name": "tracnghiemkb",
+  "version": "1.0.0",
+  "description": "Ứng dụng trắc nghiệm kết nối json",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.14.1",
+    "connect-mongo": "^2.0.3",
+    "ejs": "^2.3.4",
+    "express": "^4.13.3",
+    "express-session": "^1.15.6",
+    "fs": "0.0.2",
+    "mongoose": "^5.4.16",
+    "nodemon": "^1.18.11",
+    "read-excel-file": "^2.0.10"
+  },
+  "engines": {
+    "node": "10.14.1"
+  },
+  "scripts": {
+    "eslint": "eslint /",
+    "start": "nodemon server.js"
+  },
+  "author": "Nguyennt234",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^5.16.0"
+  }
+}

@@ -1,0 +1,25 @@
+<% include others/header %>
+
+<body>
+  <% include others/nav %>
+  <div class="container" style="margin-top: 7%">
+    <div id="root">
+      <%
+        if (typeof questioncontinue != 'undefined') {
+        %>
+      <div class="alert alert-danger" id="testingWarning" role=" alert">
+        <p style="margin: 0" class="nameAlert">Bài thi chưa hoàn thành, xin tiếp tục thi!&nbsp;<a href="#"
+            class="close nameAlert" data-hide="alert">&times;</a></p>
+      </div>
+      <%
+          }
+      %>
+      <% include completed %>
+
+    </div>
+    <% include others/notification %>
+  </div>
+
+</body>
+
+</html>

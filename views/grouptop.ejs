@@ -1,0 +1,72 @@
+<% include others/header %>
+
+<body>
+    <% include others/nav %>
+    <div class="container" style="margin-top: 7%">
+        <div id="root">
+            <center>
+                <h3>BẢNG XẾP HẠNG ĐƠN VỊ</h3>
+                <p style="color: red; font-weight: bold">Nhấn <a href="/top">vào đây</a> để xem xếp hạng cá nhân</p>
+                %>
+            </center>
+            <div>
+                <table style="width: 100%">
+                    <thead>
+                        <tr>
+                            <td>
+                                <center>STT</center>
+                            </td>
+                            <td>
+                                <center>Tên đơn vị</center>
+                            </td>
+                            <td>
+                                <center>Tổng số lần dự thi</center>
+                            </td>
+                            <td>
+                                <center>Trung bình điểm</center>
+                            </td>
+                            <td>
+                                <center>Trung bình Thời gian</center>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%               
+                            let count = 1;             
+                            top.forEach(function(row){ 
+                        %>
+                        <tr>
+                            <td>
+                                <center><%= count %></center>
+                            </td>
+                            <td>
+                                <center><%= row._id %></center>
+                            </td>
+                            <td>
+                                <center><%= row.count %></center>
+                            </td>
+                            <td>
+                                <center><%= row.totalmark.toFixed(2) %></center>
+                            </td>
+                            <td>
+                                <% 
+                                    let hours = Math.floor((row.totaltime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                                    let minutes = Math.floor((row.totaltime % (1000 * 60 * 60)) / (1000 * 60));
+                                    let seconds = Math.floor((row.totaltime % (1000 * 60)) / 1000);                                                       
+                                %>
+                                <%= hours + " giờ " + minutes + " phút " + seconds + " giây" %>
+                            </td>
+                        </tr>
+                        <%    
+                            count++;                                        
+                            })
+                        %>
+                    </tbody>
+                </table>
+                <br /><br />
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

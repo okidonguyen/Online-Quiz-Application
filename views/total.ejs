@@ -1,0 +1,70 @@
+<% include others/header %>
+
+<body>
+    <% include others/nav %>
+    <div class="container" style="margin-top: 7%">
+        <div id="root">
+            <center>
+                <h1>TỈ LỆ CÂU HỎI</h1>
+                <table style="width: 70%">
+                    <thead>
+                        <tr>
+                            <td style="width: 50px">
+                                <center>STT</center>
+                            </td>
+                            <td>
+                                <center>Bộ đề</center>
+                            </td>
+                            <td>
+                                <center>Số câu đúng</center>
+                            </td>
+                            <td>
+                                <center>Số câu sai</center>
+                            </td>
+                            <td>
+                                <center>Tỉ lệ đúng (Trên tổng số câu)</center>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% 
+                        let count = 1;
+                        for (let key in total) {                            
+                    %>
+                        <tr>
+                            <td>
+                                <center><%= count %></center>
+                            </td>
+                            <td>
+                                <center><%= total[key].name %></center>
+                            </td>
+                            <td>
+                                <center><%= total[key].caudung %></center>
+                            </td>
+                            <td>
+                                <center><%= total[key].causai %></center>
+                            </td>
+                            <td>
+                                <center>
+                                    <%= ((total[key].caudung)/(total[key].causai + total[key].caudung)*100).toFixed(2) %>
+                                    %
+                                </center>
+                            </td>
+                        </tr>
+                        <%
+                        count++;
+                        }
+                        
+                    %>
+
+                    </tbody>
+                </table>
+            </center>
+            <br /><br />
+        </div>
+        <% include others/notification %>
+    </div>
+
+</body>
+
+</html>

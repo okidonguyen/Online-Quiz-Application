@@ -1,0 +1,81 @@
+<% include others/header %>
+
+<body>
+  <% 
+    include others/nav 
+  %>
+  <div class="container" style="margin-top: 7%">
+    <div id="root">
+      <form id="nameForm" role="form" style="width: 80%; margin: 0 auto" action="startquiz" method="POST">
+        <div class="form-group">
+          <label for="name">Chọn bộ câu hỏi:</label>
+          <select class="form-control" id="bocauhoi" name="bocauhoi">
+            <% 
+            for (let key in bocauhoi) {
+              if(key == user.grouptype){
+              %>
+            <option value=<%= key %>><%= bocauhoi[key].title %></option>
+            <%
+              }
+            }            
+            %>
+          </select>
+          <label for="name">Hình thức thi:</label>
+          <select class="form-control" id="hinhthucthi" name="hinhthucthi">
+            <option value="3">Thi chính thức</option>
+          </select>
+          <br />
+          <input class="btn btn-primary" onclick="startQuiz()" class="form-control" type="button" id="start_quiz"
+            value="Bắt đầu thi">
+        </div>
+      </form>
+      <center>
+        <h3>KẾT QUẢ THI CỦA BẠN</h3>
+      </center>
+      <%
+          stt_canhan = 1;                
+      %>
+      <div>
+        <table style="width: 100%">
+          <thead>
+            <tr>
+              <td>STT</td>
+              <td>Họ và tên</td>
+              <td>Đơn vị</td>
+              <td>Điểm</td>
+              <td>Thời gian</td>
+            </tr>
+          </thead>
+          <tbody>
+            <%
+                data.forEach(function(user){ 
+            %>
+            <tr>
+              <td><%= stt_canhan %></td>
+              <td><%= user.fullname %>
+              </td>
+              <td>
+                <%= user.group %>
+              </td>
+              <td><%= user.mark %></td>
+              <td>
+                <% 
+                    let hours = Math.floor((user.time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    let minutes = Math.floor((user.time % (1000 * 60 * 60)) / (1000 * 60));
+                    let seconds = Math.floor((user.time % (1000 * 60)) / 1000);                                                       
+                %>
+                <%= hours + " giờ " + minutes + " phút " + seconds + " giây" %>
+              </td>
+            </tr>
+            <%
+            stt_canhan++;
+                })
+            %>
+          </tbody>
+        </table>
+      </div>
+      <% include others/notification %>
+    </div>
+</body>
+
+</html>

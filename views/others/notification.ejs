@@ -1,0 +1,57 @@
+<div class="customNotifications">
+    <div class="alert alert-danger" id="nameFormWarning" role="alert" style="display:none">
+        <p style="margin: 0" class="nameAlert">Xin vui lòng kiểm tra lại thông tin!&nbsp;<a href="#"
+                class="close nameAlert" data-hide="alert">&times;</a></p>
+    </div>
+    <div class="alert alert-danger" id="registerFormWarning"" role=" alert" style="display:none">
+        <p style="margin: 0" class="nameAlert">Xin vui lòng nhập đầy đủ thông tin!&nbsp;<a href="#"
+                class="close nameAlert" data-hide="alert">&times;</a></p>
+    </div>
+    <%
+            if (typeof isLogin != 'undefined') {
+        %>
+    <div class="alert alert-danger" id="testingWarning"" role=" alert">
+        <p style="margin: 0" class="nameAlert">Kiểm tra thông tin đăng nhập!&nbsp;<a href="#" class="close nameAlert"
+                data-hide="alert">&times;</a></p>
+    </div>
+    <%
+            }
+        %>
+
+
+    <%
+        if (typeof testing != 'undefined') {
+    %>
+    <div class="alert alert-danger" id="testingWarning"" role=" alert">
+        <p style="margin: 0" class="nameAlert">Số báo danh đang thi!&nbsp;<a href="#" class="close nameAlert"
+                data-hide="alert">&times;</a></p>
+    </div>
+    <%
+        }
+    %>
+
+    <%
+        if (typeof unlocksuccess != 'undefined') {
+                if(unlocksuccess){
+        %>
+    <div class="alert alert-success" id="testingWarning"" role=" alert">
+        <p style="margin: 0" class="nameAlert">Gỡ bài thi thành công!&nbsp;<a href="#" class="close nameAlert"
+                data-hide="alert">&times;</a></p>
+    </div>
+    <%
+            }else{
+                %>
+    <div class="alert alert-danger" id="testingWarning"" role=" alert">
+        <p style="margin: 0" class="nameAlert">Gỡ bài thi không thành công!&nbsp;<a href="#" class="close nameAlert"
+                data-hide="alert">&times;</a></p>
+    </div>
+    <%
+            }
+        }
+        %>
+    <script>
+        $("#testingWarning").fadeTo(3000, 500).slideUp(500, function () {
+            $("#testingWarning").hide();
+        });
+    </script>
+</div>

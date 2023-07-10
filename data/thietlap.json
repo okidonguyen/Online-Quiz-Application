@@ -1,0 +1,116 @@
+{
+    "nghiepvuketoan": {
+        "title": "Nghiệp vụ Kế toán",
+        "tongsocau": 100,
+        "tongthoigian": 50,
+        "socauhoi": [
+            {
+                "bocauhoi": "dutoan",
+                "socau": 13
+            },
+            {
+                "bocauhoi": "thu",
+                "socau": 15
+            },
+            {
+                "bocauhoi": "khac",
+                "socau": 8
+            },
+            {
+                "bocauhoi": "mlns",
+                "socau": 3
+            },
+            {
+                "bocauhoi": "bctcnn",
+                "socau": 4
+            },
+            {
+                "bocauhoi": "thanhtoan",
+                "socau": 16
+            },
+            {
+                "bocauhoi": "mosudungtaikhoan",
+                "socau": 4
+            },
+            {
+                "bocauhoi": "chi",
+                "socau": 7
+            },
+            {
+                "bocauhoi": "baocao",
+                "socau": 3
+            },
+            {
+                "bocauhoi": "luatnsnn",
+                "socau": 4
+            },
+            {
+                "bocauhoi": "quyettoannsnn",
+                "socau": 3
+            },
+            {
+                "bocauhoi": "bskt",
+                "socau": 15
+            },
+            {
+                "bocauhoi": "bbkt",
+                "socau": 5
+            }
+        ]
+    },
+    "nghiepvukiemsoatchi": {
+        "title": "Nghiệp vụ Kiểm soát chi",
+        "tongsocau": 100,
+        "tongthoigian": 50,
+        "socauhoi": [
+            {
+                "bocauhoi": "camketchi",
+                "socau": 10
+            },
+            {
+                "bocauhoi": "chithuongxuyen",
+                "socau": 20
+            },
+            {
+                "bocauhoi": "chitienmat",
+                "socau": 4
+            },
+            {
+                "bocauhoi": "dautuoda",
+                "socau": 4
+            },
+            {
+                "bocauhoi": "daututrongnuoc",
+                "socau": 10
+            },
+            {
+                "bocauhoi": "dautuxa",
+                "socau": 3
+            },
+            {
+                "bocauhoi": "luatdautucong",
+                "socau": 7
+            },
+            {
+                "bocauhoi": "luatnsnnksc",
+                "socau": 8
+            },
+            {
+                "bocauhoi": "luatxaydung",
+                "socau": 7
+            },
+            {
+                "bocauhoi": "viphamhanhchinh",
+                "socau": 7
+            },
+            {
+                "bocauhoi": "bsksc",
+                "socau": 17
+            },
+            {
+                "bocauhoi": "bbksc",
+                "socau": 3
+            }
+        ]
+    }
+}

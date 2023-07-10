@@ -1,0 +1,92 @@
+<% include others/header %>
+
+<body>
+    <% include others/nav %>
+    <div class="container" style="margin-top: 7%">
+        <div id="root">
+            <center>
+                <h3>BẢNG XẾP HẠNG</h3>
+                <p style="color: red; font-weight: bold">Nhấn <a href="/grouptop">vào đây</a> để xem xếp hạng đơn vị</p>
+                <%
+                let default_btn = true;     
+                let default_key = "";                           
+                for (let key in btn) {
+                    %>
+                <button type="button" onclick="showBxh(this)" ref="<%= key %>"
+                    class="<%= (default_btn?'btn btn-warning':'btn btn-default') %>"><%= btn[key] %></button>
+                <%  
+                    // Set default key
+                    if(default_btn){
+                        default_key = key;
+                        default_btn = false;   
+                    }                                   
+                } 
+            %>
+            </center>
+            <div>
+                <br />
+                <%                
+                for (let key in bocauhoi) {
+                    %>
+                <div id="<%= key %>" style="display: <%= (default_key == key?'block':'none') %>">
+                    <table style="width: 100%">
+                        <thead>
+                            <tr>
+                                <td>
+                                    <center>STT</center>
+                                </td>
+                                <td>Người dự thi</td>
+                                <td>
+                                    <center>Điểm</center>
+                                </td>
+                                <td>Thời gian</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%
+                                let stt_canhan = 1;    
+                                bocauhoi[key].forEach(function(user){ 
+                            %>
+                            <tr>
+                                <td>
+                                    <center><%= stt_canhan %></center>
+                                </td>
+                                <td>
+                                    <%= user.sbd + " - " +  user.fullname + " - " + user.group %>
+                                </td>
+                                <td>
+                                    <center><%= user.mark %></center>
+                                </td>
+                                <td>
+                                    <% 
+                                        let hours = Math.floor((user.time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                                        let minutes = Math.floor((user.time % (1000 * 60 * 60)) / (1000 * 60));
+                                        let seconds = Math.floor((user.time % (1000 * 60)) / 1000);                                                       
+                                    %>
+                                    <%= hours + " giờ " + minutes + " phút " + seconds + " giây" %>
+                                </td>
+                            </tr>
+                            <%
+                                stt_canhan++;
+                                    })
+                                %>
+                        </tbody>
+                    </table>
+                </div>
+                <%
+                };
+            %>
+            </div>
+        </div>
+        <script>
+            function showBxh(value) {
+                var target = $(value).attr('ref');
+                $(".btn").attr("class", "btn btn-default");
+                $(value).attr("class", "btn btn-warning");
+                $("#" + target).show().siblings("div").hide();
+            }
+        </script>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,75 @@
+<form id="registerForm" role="form" style="width: 80%; margin: 0 auto" action="register" method="POST">
+    <div class="form-group">
+        <table class="reg-table" style="width: 100%; border: solid 1px white" cellspacing="0" cellpadding="0">
+            <tr>
+                <td>
+                    <label for="name">Nhập số hiệu Kho bạc:</label>
+                    <input type="text" id="shkb" name="shkb" placeholder="Nhập 4 số" class="form-control"
+                        onkeyup="getGroupName(this.value)">
+                </td>
+                <td>
+                    <label for="name">Đơn vị:</label>
+                    <input type="text" id="groupName" name="groupName" placeholder="Tên đơn vị" class="form-control"
+                        readonly>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <label for="name">Số báo danh:</label>
+                    <input type="text" id="sbd" name="sbd" placeholder="Số báo danh" maxlength="6" class="form-control">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <label for="name">Nhập họ tên:</label>
+                    <input type="text" id="fullname" name="fullname" placeholder="Họ và tên" class="form-control">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <label for="name">Nhập mật khẩu:</label>
+                    <input type="text" id="password" name="password" placeholder="Nhập mật khẩu ở đây"
+                        class="form-control">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <label for="name">Nhóm tài khoản:</label>
+                    <select name="nhomtaikhoan" class="form-control">
+                        <option value="admin">Quản trị hệ thống</option>
+                        <%
+                            for (let key in questions) {
+                                %>
+                        <option value="<%= key %>"><%= questions[key] %></option>
+                        <%
+                            }
+                        %>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    </br>
+                    <input class="btn btn-info" class="form-control" type="button" value="Đăng ký"
+                        onclick="submitUser()">
+                    <input class="btn btn-default" class="form-control" type="button" value="Trở lại"
+                        onclick="window.location.href='/'">
+                </td>
+            </tr>
+        </table>
+        <style>
+            .reg-table table {
+                border: none;
+            }
+
+            .reg-table tr {
+                border: none;
+            }
+
+            .reg-table td {
+                border: none;
+            }
+        </style>
+
+    </div>
+</form>

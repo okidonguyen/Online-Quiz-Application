@@ -1,0 +1,38 @@
+<% include others/header %>
+
+<body>
+    <% include others/nav %>
+    <div class="container" style="margin-top: 7%">
+        <% include others/notification %>
+        <center>
+            <h3>THIẾT LẬP BỘ CÂU HỎI</h3>
+            <p>Chọn bộ câu hỏi để cập nhật hoặc <a href="#">Bấm vào đây</a> để thêm mới</p>
+            <select name="bocauhoi" id="bocauhoi" class="form-control" style="width: 400px"
+                onchange="getSetting(this.value)">
+                <option value="">Chọn bộ câu hỏi</option>
+                <%
+                for (let key in questions) {
+                    %>
+                <option value="<%= key %>"><%= questions[key] %></option>
+                <%
+                }
+            %>
+            </select>
+            <div id="root"></div>
+        </center>
+    </div>
+    <script>
+        function getSetting(value) {
+            if (value.length > 0) {
+                $.get("getSetting/" + value, function (data, status) {
+                    $("#root").html(data);
+                });
+            } else {
+                $("#root").html("");
+            }
+
+        }
+    </script>
+</body>
+
+</html>

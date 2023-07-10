@@ -1,0 +1,80 @@
+<center>
+    <%
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    %>
+    <h3>Xin chúc mừng, bạn đã làm đúng <span style="color: green"><%= mark %></span> trên <%= data.length %> câu. Trong
+        thời gian <%= hours %> giờ <%= minutes %> phút <%= seconds %> giây</h3>
+    <h4>Bấm <a href="/top">vào đây</a> để xem thành tích</h4>
+    <br />
+    <h4>Chi tiết đáp án</h4>
+</center>
+<div>
+    <table style="width: 100%">
+        <thead>
+            <tr>
+                <td style="width: 50px">STT</td>
+                <td>Bộ câu hỏi</td>
+                <td>Chi tiết đáp án</td>
+            </tr>
+        </thead>
+        <tbody>
+            <% 
+                let quesname= "";
+                let quesnum= 1;
+                for(var i = 0; i < data.length ; i++){
+                    if(data[i].quesname != quesname){
+                        quesname = data[i].quesname;
+                        quesnum= 1;
+                    }
+            %>
+            <tr>
+                <td>
+                    <center><%= i+1 %></center>
+                </td>
+                <td>
+                    <center><%= quesname + "-" + quesnum %></center>
+                </td>
+                <td>
+                    <%= data[i].text %>
+                    <br />
+                    <%
+                    data[i].answers.forEach(function(ans){ 
+                        if(ans.correct == true){
+                            %>
+                    <span style="color: green; font-weight: bold">- <%= ans.text %></span>
+                    <%
+                        }else{
+                            %>
+                    <span>- <%= ans.text %></span>
+                    <%
+                        }
+
+                        if(ans.correct == true){
+                            %>
+                    <span style="color: green; font-weight: bold">(Đáp án)</span>
+                    <%
+                        }
+
+                        if(ans.yourchoices == true){
+                            %>
+                    <span style="color: blue; font-weight: bold">(Trả lời của bạn)</span>
+                    <%
+                        }
+                        %>
+                    <br />
+                    <%
+                    })
+                %>
+                </td>
+            </tr>
+            <%
+            quesnum++;
+            }
+            %>
+        </tbody>
+    </table>
+    <br />
+
+</div>

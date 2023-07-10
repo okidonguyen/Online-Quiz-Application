@@ -1,0 +1,89 @@
+<div id="question-title">
+  <strong>
+    <p>
+      <%= "Câu " + (current+1) + "/" + data.length + ": " + data[current].text %>
+    </p>
+  </strong>
+</div>
+<div id="question-main">
+  <form>
+    <table id="quiz-table" style="min-height: 340px">
+      <% 
+        var choices = 1;        
+        var aToz = ["A","B","C","D","E","F","G"];
+        data[current].answers.forEach(function(ans){ %>
+      <tr>
+        <td id="quiz-checkbox">
+          <%
+          var checked = "";          
+          if(ans.yourchoices == true){
+              checked = "checked";
+          }
+
+          if (data[current].type == "mot"){    
+          %>
+          <input type="radio" class="answers" name="answers" id="choices<%= choices %>" value="<%= choices %>"
+            <%= checked %>>
+          <%                        
+          }else{
+          %>
+          <input type="checkbox" class="answers" name="answers" id="choices<%= choices %>" value="<%= choices %>"
+            <%= checked %>>
+          <%
+          }
+          %>
+        </td>
+        <td><label style="font-weight: normal" id="label<%= choices %>"
+            for="choices<%= choices %>"><%= aToz[choices-1] + ". " + ans.text %></label></td>
+      </tr>
+      <% 
+            choices++;
+        }); %>
+    </table>
+    <input type="hidden" value="<%= start %>" name="startTime" id="startTime" />
+    <input type="hidden" value="<%= nowtime %>" name="nowTime" id="nowTime" />
+    <input type="hidden" value="<%= data.length-1 %>" name="endindex" id="endindex" />
+    <input type="hidden" value="<%= current %>" name="currentindex" id="currentindex" />
+  </form>
+  <br />
+  <% if(current > 0){ %>
+  <button id="previousQuestion" class="btn btn-primary btn-sm" onclick="previousQuestion()"> Câu trước </button>
+  <% } %>
+  <% if(current < (data.length-1)){ %>
+  <button id="nextQuestion" class="btn btn-info btn-sm" onclick="nextQuestion()"> Câu sau</button>
+  <% } %>
+  <% if(current == (data.length-1)){ %>
+  <button id="nextQuestion" class="btn btn-success btn-sm" onclick="completed()"> Kết thúc</button>
+  <% } %>
+  <br />
+  <br />
+</div>
+<div id="question-nav">
+  <% for(var i = 0; i < data.length ; i++){
+        var buttonStatus = "btn btn-danger";        
+
+        if(data[i].choicecorrect != null){
+            buttonStatus = "btn btn-success";
+        }
+
+        if(i == current){
+            buttonStatus = "btn btn-warning";
+        }
+
+        %>
+  <button type="button" style="margin: 2px; width: 40px" class="<%= buttonStatus %>"
+    onclick="moveQuestion(<%= i %>)"><%= i + 1 %></button>
+  <%
+    }
+    %>
+</div>
+<script>
+  $(document).ready(function () {
+    let starttime = $("#startTime").val();
+    let nowtime = $("#nowTime").val();
+    for (let i = 0; i < 9999; i++) {
+      clearInterval(i);
+    }
+    coundownTimer(starttime, nowtime, 3000000); //3000000
+  })
+</script>

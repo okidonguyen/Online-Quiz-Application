@@ -1,0 +1,37 @@
+<hr />
+<h5>Bộ <%= chitiet.tongsocau %> câu hỏi <%= chitiet.title %>
+    <br /> Bấm <a href="#" onclick="updateSetting('<%= bocauhoi %>')">vào đây</a> để cập nhật thiết lập,
+    Bấm <a href="#">vào đây</a> để thêm bộ câu hỏi
+</h5>
+<table style="width: 700px">
+    <tr>
+        <td align="center"><strong>STT</strong></td>
+        <td><strong>Tên</strong></td>
+        <td align="center"><strong>Số câu</strong></td>
+        <td align="center"><strong>Tác vụ</strong></td>
+    </tr>
+    <%
+    let count = 1;
+    chitiet.socauhoi.forEach(function(data){
+%>
+    <tr>
+        <td align="center"><%= count %></td>
+        <td><%= data.bocauhoi %></td>
+        <td align="center"><%= data.socau %></td>
+        <td align="center">
+            <a href="#">Xóa</a> | <a href="#">Cập nhật</a>
+        </td>
+    </tr>
+
+    <%
+    count++;
+    });    
+%>
+</table>
+<script>
+    function updateSetting(value) {
+        $.get("setting-update/" + value, function (data, status) {
+            $("#root").html(data);
+        });
+    }
+</script>

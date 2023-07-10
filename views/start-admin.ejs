@@ -1,0 +1,107 @@
+<% include others/header %>
+
+<body>
+  <% 
+    include others/nav 
+  %>
+  <div class="container" style="margin-top: 7%">
+    <div id="root">
+      <center>
+        <h3>DANH SÁCH TÀI KHOẢN</h3>
+        <p>Bấm vào <a href="#" onclick="registerUser()">Đăng ký</a> để thêm mới thí sinh, hoặc bấm vào
+          <a href="/importUser">vào đây</a> để cập nhật tất cả từ file Excel</p>
+      </center>
+      <div>
+        <table style="width: 100%">
+          <thead>
+            <tr>
+              <td>
+                <center>
+                  STT
+                </center>
+              </td>
+              <td>
+                <center>
+                  SBD
+                </center>
+              </td>
+              <td>Họ và tên</td>
+              <td>Đơn vị</td>
+              <td>
+                <center>
+                  Nhóm
+                </center>
+              </td>
+              <td>
+                <center>
+                  Tác vụ
+                </center>
+              </td>
+            </tr>
+          </thead>
+          <tbody>
+            <%
+              var count = 1;
+              data.forEach(function(user){ 
+                if(user.grouptype != "admin"){
+            %>
+            <tr>
+              <td>
+                <center><%= count %></center>
+              </td>
+              <td>
+                <center><%= user.sbd %></center>
+              </td>
+              <td><%= user.fullname %>
+              </td>
+              <td>
+                <%= user.shkb + " " + user.group %>
+              </td>
+              <td>
+                <center><%= user.grouptype %></center>
+              </td>
+              <td>
+                <center>
+                  <% 
+                    if( check[count-1] == "OK" ){
+                  %>
+                  <a onclick="restartTest('<%= user.sbd %>')" href="#">Thi lại</a> |
+                  <a onclick="viewResult('<%= user.sbd %>')" href="#">Xem kết quả</a>
+                  <%
+                    }else{
+                      %>
+                  <%= check[count-1] %>
+                  <%
+                    }
+                  %>
+                </center>
+              </td>
+            </tr>
+            <%           
+              } 
+              count++;
+                });
+            %>
+          </tbody>
+        </table>
+      </div>
+
+      <br /><br /><br />
+      <% include others/notification %>
+    </div>
+    <script>
+      function restartTest(sbd) {
+        if (confirm("Bạn có chắc muốn xóa bài thi!?")) {
+          window.location.href = "/restartTest/" + sbd;
+        }
+      }
+
+      function viewResult(sbd) {
+        $.get("/viewResult/" + sbd, function (data, status) {
+          $("#root").html(data);
+        });
+      }
+    </script>
+</body>
+
+</html>

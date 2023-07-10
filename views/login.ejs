@@ -1,0 +1,57 @@
+<% include others/header %>
+
+<body>
+  <% include others/nav %>
+  <div class="container" style="margin-top: 7%">
+    <div id="root">
+      <form id="loginForm" role="form" style="width: 80%; margin: 0 auto" action="login" method="POST">
+        <div class="form-group">
+          <table class="login-table" style="width: 100%; border: solid 1px white">
+            <tr>
+              <td colspan="2">
+                <label for="name">Nhập số báo danh:</label>
+                <input type="text" id="sbd" name="sbd" maxlength="6"
+                  placeholder="Nhập số báo danh theo danh sách: 00 - 70" class="form-control"
+                  onkeyup="getUser(this.value)">
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <label for="name">Nhập mật khẩu:</label>
+                <input type="text" id="password" name="password"
+                  placeholder="Mật khẩu là: Năm sinh theo danh sách, ví dụ: 1988" class="form-control">
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <label for="name">Thông tin:</label>
+                <input type="text" id="userinfo" name="userinfo" placeholder="Thông tin người thi" class="form-control"
+                  readonly>
+              </td>
+            </tr>
+          </table>
+          <br>
+          <input type="hidden" id="checkinfo" name="checkinfo" value="false" />
+          <input class="btn btn-primary" class="form-control" type="button" id="start_quiz" value="Đăng nhập"
+            onclick="login()">
+        </div>
+      </form>
+    </div>
+    <style>
+      .login-table table {
+        border: none;
+      }
+
+      .login-table tr {
+        border: none;
+      }
+
+      .login-table td {
+        border: none;
+      }
+    </style>
+    <% include others/notification %>
+  </div>
+</body>
+
+</html>

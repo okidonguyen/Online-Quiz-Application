@@ -1,0 +1,61 @@
+<center>
+    <h3>THÊM THIẾT LẬP BỘ CÂU HỎI</h3>
+    <form id="addSettingForm" role="form" style="width: 80%; margin: 0 auto" action="setting-add" method="POST">
+        <div class="form-group">
+            <table class="reg-table" style="width: 100%; border: solid 1px white" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td colspan="2">
+                        <label for="name">Tên bộ câu hỏi:</label>
+                        <input type="text" id="title" name="title" placeholder="Nhập Tên bộ câu hỏi"
+                            class="form-control">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <label for="name">Thời gian làm bài:</label>
+                        <input type="number" id="tongthoigian" name="tongthoigian" placeholder="Nhập số phút"
+                            class="form-control">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        </br>
+                        <input class="btn btn-info" class="form-control" type="button" value="Lưu"
+                            onclick="settingAdd()">
+                        <input class="btn btn-default" class="form-control" type="button" value="Trở lại"
+                            onclick="window.location.href='/setting'">
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
+    <% include others/notification %>
+</center>
+<style>
+    .reg-table table {
+        border: none;
+    }
+
+    .reg-table tr {
+        border: none;
+    }
+
+    .reg-table td {
+        border: none;
+    }
+</style>
+<script>
+    function settingAdd() {
+        if ($("#title").val().length > 0 &&
+            $("#tongthoigian").val().length > 0) {
+            $("#addSettingForm").submit();
+        } else {
+            $("#registerFormWarning").show();
+            $("#registerFormWarning")
+                .fadeTo(3000, 500)
+                .slideUp(500, function () {
+                    $("#registerFormWarning").hide();
+                });
+        }
+    }
+</script>
